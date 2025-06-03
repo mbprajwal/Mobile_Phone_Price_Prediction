@@ -5,4 +5,3 @@ seaborn
 numpy
 joblib
 python-dotenv
-sympy 
