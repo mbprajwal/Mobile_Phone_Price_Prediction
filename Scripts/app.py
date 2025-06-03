@@ -25,15 +25,29 @@ def load_model_pipeline():
 model, pipeline, feature_names = load_model_pipeline()
 
 # Streamlit UI
+import streamlit as st
+import pandas as pd
+
 st.title("📱 Mobile Price Prediction App")
+st.markdown("Enter the **features** to predict the price of the mobile phone.")
 
-st.markdown("Enter the *numerical features* to predict the price of the mobile phone.")
-
-# Dynamically create input fields for each feature
+# Example feature list (modify these ranges/choices as per your dataset)
 user_input = {}
-for feature in feature_names:
-    user_input[feature] = st.number_input(f"{feature}", value=0.0, format="%.2f")
 
+# Features with a defined set of options
+user_input["No_of_sim"] = st.selectbox("Number of SIMs", options=[1, 2])
+user_input["Android_version"] = st.selectbox("Android Version", options=[6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0])
+user_input["External_Memory"] = st.selectbox("External Memory (GB)", options=[0, 32, 64, 128, 256])
+
+# Continuous/numerical features
+user_input["Rating"] = st.number_input("Rating (0–5)", min_value=0.0, max_value=5.0, step=0.1)
+user_input["Spec_score"] = st.number_input("Spec Score", min_value=0.0, max_value=100.0, step=0.5)
+user_input["Ram"] = st.number_input("RAM (GB)", min_value=1.0, max_value=32.0, step=1.0)
+user_input["Battery"] = st.number_input("Battery Capacity (mAh)", min_value=1000.0, max_value=6000.0, step=100.0)
+user_input["Display"] = st.number_input("Display Size (inches)", min_value=4.0, max_value=7.5, step=0.1)
+user_input["Camera"] = st.number_input("Camera (MP)", min_value=2.0, max_value=108.0, step=1.0)
+
+# Predict button
 if st.button("Predict Price"):
     try:
         input_df = pd.DataFrame([user_input])
