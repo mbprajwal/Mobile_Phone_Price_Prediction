@@ -39,6 +39,6 @@ if st.button("Predict Price"):
         input_df = pd.DataFrame([user_input])
         input_transformed = pipeline.transform(input_df)
         predicted_price = model.predict(input_transformed)[0]
-        st.success(f"💰 Predicted Price: ₹ {predicted_price:,.2f}")
+        st.success(f"Predicted Price: ₹ {predicted_price:,.2f}")
     except Exception as e:
         st.error(f"Error during prediction: {e}")
