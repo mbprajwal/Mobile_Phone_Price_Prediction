@@ -7,6 +7,7 @@ from ml_functions import train_model, evaluate_model, save_model
 from helper_functions import setup_logging, log_info, log_error
 
 import pickle
+import numpy as np
 
 # Load environment variables
 load_dotenv()
